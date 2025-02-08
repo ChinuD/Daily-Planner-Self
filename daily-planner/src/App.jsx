@@ -12,7 +12,7 @@ function App() {
       <h1 className='text-4xl'>Daily Planner</h1>
       <Task_Form/>
       <div className="">
-        <Task_Item/>
+        {/* <Task_Item/> */}
       </div>
       <Task_List/>
     </div>
