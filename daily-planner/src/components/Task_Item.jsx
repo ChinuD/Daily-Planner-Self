@@ -1,17 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-function Task_Item() {
+function Task_Item({ task }) {
+  // Ensure the task exists and has expected properties
+  if (!task || !task.name || !task.time) {
+    return <p className="text-red-500">Invalid Task Data</p>;
+  }
+
   return (
-    <div className='w-[90%] h-[40px] border rounded-sm mx-auto p-1 flex flex-row justify-evenly'>
-      <h3 className='w-[50%] my-auto'>Hello this is me </h3>
-      <div className="bg-blue-600 text-white w-[60px] h-[25px] my-auto rounded-[4px] flex justify-center items-center">
-        12:30
-      </div>
-      <div className="my-auto flex">
-        <input type="checkbox"  />
-      </div>
+    <div className="w-full flex items-center justify-between border p-3 rounded-md shadow-sm">
+      <h3 className="font-semibold">{task.name}</h3>
+      <span className="bg-blue-500 text-white px-3 py-1 rounded-md">{task.time}</span>
+      <input type="checkbox" className="w-5 h-5 cursor-pointer"/>
     </div>
-  )
+  );
 }
 
-export default Task_Item
+export default Task_Item;

@@ -1,28 +1,60 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-function Task_Form() {
+function Task_Form({ onAddTask }) {
+  const [taskName, setTaskName] = useState('');
+  const [taskDate, setTaskDate] = useState('');
+  const [taskTime, setTaskTime] = useState('');
 
-  const [taskName, setTaskName] = useState('')
-  const [taskDate, setTaskDate] = useState()
-  const [taskTime, setTaskTime] = useState()
-  console.log(taskName)
-  console.log(taskTime)
-  console.log(taskDate)
+  const handleAddTask = () => {
+    if (!taskName.trim() || !taskDate || !taskTime) {
+      alert("Please fill in all fields!");
+      return;
+    }
 
-  onAddTask({taskName, taskTime, taskDate});
-  setTaskTime('')
-  setTaskDate('')
+    // Create task object
+    const newTask = {
+      name: taskName,
+      date: taskDate,
+      time: taskTime,
+    };
+
+    onAddTask(newTask); // Send to Task_List
+    setTaskName(''); // Reset input
+    setTaskDate('');
+    setTaskTime('');
+  };
 
   return (
-    <div className='max-w-fit max-h-fit border m-2 rounded-md py-2 px-2 flex flex-col gap-2'>
-        <input type="text" onChange={(e)=>setTaskName(e.target.value)} className='border rounded-sm p-1 min-w-fit'/>
-        <div className="flex flex-row justify-between gap-2">
-            <input type="Time" onChange={(e)=>setTaskTime(e.target.value)}  className='border rounded-sm p-1'/>
-            <input type="Date" onChange={(e)=>setTaskDate(e.target.value)}  className='border rounded-sm p-1'/>
-            <button className='border rounded-sm px-2' onClick={onAddTask} >Add</button>
-        </div>
+    <div className="w-[350px] border rounded-md p-4 flex flex-col gap-3 shadow-lg">
+      <input 
+        type="text" 
+        value={taskName}
+        onChange={(e) => setTaskName(e.target.value)} 
+        className="border rounded-md p-2 w-full outline-none"
+        placeholder="Enter Task Name"
+      />
+      <div className="flex flex-row gap-3">
+        <input 
+          type="time" 
+          value={taskTime}
+          onChange={(e) => setTaskTime(e.target.value)}  
+          className="border rounded-md p-2 w-[110px] outline-none"
+        />
+        <input 
+          type="date" 
+          value={taskDate}
+          onChange={(e) => setTaskDate(e.target.value)}  
+          className="border rounded-md p-2 w-[140px] outline-none"
+        />
+        <button 
+          className="border rounded-md px-4 bg-blue-500 text-white hover:bg-blue-600"
+          onClick={handleAddTask}
+        >
+          Add
+        </button>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Task_Form
+export default Task_Form;

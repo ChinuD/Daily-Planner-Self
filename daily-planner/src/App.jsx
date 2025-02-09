@@ -9,8 +9,8 @@ function App() {
 
   return (
     <div className='flex justify-start items-center flex-col gap-4 w-screen h-screen p-4'>
-      <h1 className='text-4xl'>Daily Planner</h1>
-      <Task_Form/>
+      {/* <h1 className='text-4xl'>Daily Planner</h1> */}
+      {/* <Task_Form/> */}
       <div className="">
         {/* <Task_Item/> */}
       </div>
